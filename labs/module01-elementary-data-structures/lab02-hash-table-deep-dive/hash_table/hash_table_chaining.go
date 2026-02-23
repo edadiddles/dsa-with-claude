@@ -1,11 +1,13 @@
 package hash_table
 
 
-type HashTable []KVPairs
+type HashTable []KVPair
 
-type KVPairs struct {
+type KVPair struct {
 	key int
 	val int
+	tombstone bool
+	filled bool
 }
 
 type ChainingHashTable struct {
@@ -26,7 +28,7 @@ func (htbl *ChainingHashTable) Insert(k, v int) {
 	if v_chain == nil {
 		v_chain = make(HashTable, 0)
 	}
-	htbl.tbl[idx] = append(v_chain, KVPairs{ key: k, val: v })
+	htbl.tbl[idx] = append(v_chain, KVPair{ key: k, val: v })
 }
 
 func (htbl *ChainingHashTable) Search(k int) int {

@@ -1,13 +1,20 @@
 package hash_table
 
 type DoubleHashTable struct {
+	tbl []HashTable
+	f HashFunc
+	m int
 }
 
-func (t *DoubleHashTable) Init() {
+func (htbl *DoubleHashTable) Init(t HashFuncType, m int) {
+
 }
-func (t *DoubleHashTable) Insert() {
+
+func (htbl *DoubleHashTable) Insert(k, v int) {
 }
-func (t *DoubleHashTable) Search() {
+
+func (htbl *DoubleHashTable) Search(k int) {
 }
-func (t *DoubleHashTable) Delete() {
+
+func (htbl *DoubleHashTable) Delete(k int) {
 }
