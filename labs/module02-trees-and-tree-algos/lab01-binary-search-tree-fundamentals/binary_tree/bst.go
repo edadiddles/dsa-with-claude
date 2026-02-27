@@ -20,8 +20,27 @@ func (bst *BinarySearchTree) Search(val int) *TreeNode {
 	return bst.r_search(bst.tree, val)
 }
 
-func (bst *BinarySearchTree) Delete(val int) *TreeNode {
-	return nil
+func (bst *BinarySearchTree) Delete(val int) {
+	n := bst.Search(val)
+	if n == nil {
+		return
+	}
+
+	if n.left == nil {
+		bst.transplant(n, n.right)
+	} else if n.right == nil {
+		bst.transplant(n, n.left)
+	} else {
+		u := bst.r_minimum(n.right)
+		if u != n.right {
+			bst.transplant(u, u.right)
+			u.right = n.right
+			u.right.p = u
+		}
+		bst.transplant(n, u)
+		u.left = n.left
+		u.left.p = u
+	}
 }
 
 func (bst *BinarySearchTree) Minimum() *TreeNode {
@@ -113,4 +132,18 @@ func (bst *BinarySearchTree) r_size(n *TreeNode, s int) int {
 	s += bst.r_size(n.right, 0)
 
 	return s
+}
+
+func (bst *BinarySearchTree) transplant(u, v *TreeNode) {
+	if u.p == nil {
+		bst.tree = v
+	} else if u == u.p.left {
+		u.p.left = v
+	} else {
+		u.p.right = v
+	}
+
+	if v != nil {
+		v.p = u.p
+	}
 }

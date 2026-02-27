@@ -41,4 +41,48 @@ func TestBSTBasic(t *testing.T) {
 		t.Error(bst.Height())
 		t.Error("height is wrong")
 	}
+
+	bst.Delete(9)
+	if bst.Size() != 7 {
+		t.Error(bst.Size())
+		t.Error("size is wrong")
+	}
+	if bst.Height() != 3 {
+		t.Error(bst.Height())
+		t.Error("height is wrong")
+	}
+
+	bst.Delete(6)
+	if bst.Size() != 6 {
+		t.Error(bst.Size())
+		t.Error("size is wrong")
+	}
+	if bst.Height() != 3 {
+		t.Error(bst.Height())
+		t.Error("height is wrong")
+	}
+
+	bst.Delete(15)
+	if bst.Size() != 5 {
+		t.Error(bst.Size())
+		t.Error("size is wrong")
+	}
+	if bst.Height() != 3 {
+		t.Error(bst.Height())
+		t.Error("height is wrong")
+	}
+
+	bst.Delete(3)
+	bst.Delete(7)
+	bst.Delete(17)
+	bst.Delete(20)
+	if bst.Size() != 1 {
+		t.Error(bst.Size())
+		t.Error("size is wrong")
+	}
+	if bst.Height() != 1 {
+		t.Error(bst.Height())
+		t.Error("height is wrong")
+	}
+
 }
